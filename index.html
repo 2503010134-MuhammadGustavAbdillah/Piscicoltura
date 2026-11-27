@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piscicoltura - Penjualan Online & Stok Ikan Lele & Mujair</title>
+    <style>
+        /* =========================================================
+           PALET WARNA: BIRU TUA (DEEP NAVY) + AQUA CYAN + AMBER GOLD
+           ATURAN PENAMAAN CSS: SEMUA CLASS & ID MENGGUNAKAN "gustav_"
+           ========================================================= */
+        :root {
+            --gustav-primary: #0f172a;
+            --gustav-secondary: #1e3a8a;
+            --gustav-cyan: #0284c7;
+            --gustav-accent: #d97706;
+            --gustav-gold: #f59e0b;
+            --gustav-gold-hover: #fbbf24;
+            --gustav-bg: #f0f7ff;
+            --gustav-white: #ffffff;
+            --gustav-text: #1e293b;
+            --gustav-muted: #64748b;
+            --gustav-border: #cbd5e1;
+            --gustav-card-tint: #e0f2fe;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--gustav-bg);
+            color: var(--gustav-text);
+            line-height: 1.6;
+        }
+
+        /* HEADER & NAVIGASI */
+        #gustav_header {
+            background: linear-gradient(135deg, var(--gustav-primary), var(--gustav-secondary));
+            color: var(--gustav-white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .gustav_navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .gustav_brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gustav-gold-hover);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .gustav_menu {
+            list-style: none;
+            display: flex;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .gustav_menu_link {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 0.45rem 0.8rem;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .gustav_menu_link:hover,
+        .gustav_menu_link.gustav_active {
+            background-color: var(--gustav-gold);
+            color: var(--gustav-primary);
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+        }
+
+        #gustav_mobile_toggle {
+            display: none;
+            background: var(--gustav-gold);
+            color: var(--gustav-primary);
+            border: none;
+            padding: 0.5rem 0.85rem;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* CONTAINER UTAMA */
+        .gustav_container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .gustav_section {
+            padding: 3.5rem 0;
+            border-bottom: 2px solid #dbeafe;
+        }
+
+        .gustav_section_title {
+            font-size: 1.8rem;
+            color: var(--gustav-secondary);
+            margin-bottom: 0.5rem;
+            border-left: 5px solid var(--gustav-cyan);
+            padding-left: 0.85rem;
+        }
+
+        .gustav_section_subtitle {
+            color: var(--gustav-muted);
+            margin-bottom: 2rem;
+        }
+
+        /* 1. HERO / HOME PAGE */
+        #gustav_home {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0369a1 100%);
+            color: var(--gustav-white);
+            border-radius: 16px;
+            padding: 4rem 2.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            box-shadow: 0 12px 28px rgba(30, 58, 138, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .gustav_hero_badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.2);
+            border: 1px solid #38bdf8;
+            color: #bae6fd;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.35rem 1.1rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+
+        .gustav_hero_title {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+            color: var(--gustav-white);
+        }
+
+        .gustav_hero_desc {
+            max-width: 720px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.05rem;
+            color: #dbeafe;
+        }
+
+        .gustav_btn_group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .gustav_btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .gustav_btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .gustav_btn_gold {
+            background-color: var(--gustav-gold);
+            color: var(--gustav-primary);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .gustav_btn_gold:hover {
+            background-color: var(--gustav-gold-hover);
+        }
+
+        .gustav_btn_outline {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 2px solid #7dd3fc;
+            color: var(--gustav-white);
+        }
+
+        .gustav_btn_outline:hover {
+            background-color: rgba(125, 211, 252, 0.2);
+        }
+
+        .gustav_btn_primary {
+            background-color: var(--gustav-secondary);
+            color: var(--gustav-white);
+        }
+
+        .gustav_btn_primary:hover {
+            background-color: var(--gustav-cyan);
+        }
+
+        .gustav_btn_danger {
+            background-color: #dc2626;
+            color: var(--gustav-white);
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .gustav_btn_danger:hover {
+            background-color: #b91c1c;
+        }
+
+        /* STATISTIK SINGKAT */
+        .gustav_stats_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .gustav_stat_card {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(6px);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid rgba(125, 211, 252, 0.25);
+        }
+
+        .gustav_stat_number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gustav-gold-hover);
+        }
+
+        /* 2. KATALOG PRODUK IKAN */
+        .gustav_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gustav_card {
+            background: var(--gustav-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.08);
+            border: 1px solid #bfdbfe;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .gustav_card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(30, 58, 138, 0.14);
+        }
+
+        .gustav_card_banner {
+            height: 195px;
+            width: 100%;
+            background: linear-gradient(135deg, #dbeafe, #bae6fd);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gustav_card_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .gustav_card:hover .gustav_card_img {
+            transform: scale(1.05);
+        }
+
+        .gustav_stock_badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(30, 58, 138, 0.92);
+            color: var(--gustav-white);
+            padding: 0.3rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        .gustav_stock_empty {
+            background: rgba(220, 38, 38, 0.92);
+        }
+
+        .gustav_card_body {
+            padding: 1.25rem;
+        }
+
+        .gustav_card_title {
+            font-size: 1.2rem;
+            color: var(--gustav-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .gustav_card_price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--gustav-cyan);
+            margin-bottom: 0.75rem;
+        }
+
+        .gustav_card_desc {
+            font-size: 0.9rem;
+            color: var(--gustav-muted);
+            margin-bottom: 1rem;
+        }
+
+        .gustav_order_control {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .gustav_input_qty {
+            width: 75px;
+            padding: 0.55rem;
+            border: 1px solid #93c5fd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* 3. KERANJANG & CHECKOUT */
+        .gustav_box {
+            background: var(--gustav-white);
+            padding: 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.06);
+            border: 1px solid #bfdbfe;
+        }
+
+        .gustav_table_wrap {
+            overflow-x: auto;
+        }
+
+        .gustav_table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.25rem;
+        }
+
+        .gustav_table th,
+        .gustav_table td {
+            padding: 0.85rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+
+        .gustav_table th {
+            background-color: var(--gustav-card-tint);
+            color: var(--gustav-primary);
+            font-weight: 700;
+        }
+
+        .gustav_thumb_mini {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #93c5fd;
+        }
+
+        .gustav_checkout_summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #dbeafe;
+        }
+
+        /* 4. KELOLA STOK PETERNAK */
+        .gustav_admin_grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 1.5rem;
+        }
+
+        .gustav_form_group {
+            margin-bottom: 1rem;
+        }
+
+        .gustav_label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+            color: var(--gustav-secondary);
+            font-size: 0.92rem;
+        }
+
+        .gustav_input,
+        .gustav_select,
+        .gustav_textarea {
+            width: 100%;
+            padding: 0.65rem 0.85rem;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: #f8fafc;
+        }
+
+        .gustav_input:focus,
+        .gustav_select:focus,
+        .gustav_textarea:focus {
+            outline: none;
+            background-color: var(--gustav-white);
+            border-color: var(--gustav-cyan);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18);
+        }
+
+        /* 5. PROFIL & KUALITAS KOLAM */
+        .gustav_feature_card {
+            background: var(--gustav-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-top: 4px solid var(--gustav-secondary);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.06);
+        }
+
+        .gustav_feature_title {
+            color: var(--gustav-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        /* 6. GALERI & EDUKASI PANEN */
+        .gustav_gallery_card {
+            background: var(--gustav-white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #bfdbfe;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.05);
+        }
+
+        .gustav_gallery_icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* 7. HALAMAN KONTAK */
+        .gustav_contact_grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 2rem;
+        }
+
+        .gustav_alert {
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .gustav_alert_success {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            border: 1px solid #38bdf8;
+        }
+
+        /* FOOTER */
+        #gustav_footer {
+            background: linear-gradient(135deg, var(--gustav-primary), var(--gustav-secondary));
+            color: #e2e8f0;
+            text-align: center;
+            padding: 2.2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .gustav_footer_highlight {
+            color: var(--gustav-gold-hover);
+            font-weight: 700;
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            #gustav_mobile_toggle {
+                display: block;
+            }
+
+            .gustav_menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+                background-color: rgba(15, 23, 42, 0.6);
+                padding: 0.75rem;
+                border-radius: 8px;
+            }
+
+            .gustav_menu.gustav_show_menu {
+                display: flex;
+            }
+
+            .gustav_hero_title {
+                font-size: 1.75rem;
+            }
+
+            .gustav_admin_grid,
+            .gustav_contact_grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & NAVIGASI 7 SESI -->
+    <header id="gustav_header">
+        <nav class="gustav_navbar">
+            <a href="#gustav_home" class="gustav_brand">Piscicoltura</a>
+            <button id="gustav_mobile_toggle" onclick="gustavToggleMenu()">☰ Menu</button>
+            <ul class="gustav_menu" id="gustav_nav_list">
+                <li><a href="#gustav_home" class="gustav_menu_link gustav_active">1. Home</a></li>
+                <li><a href="#gustav_katalog" class="gustav_menu_link">2. Katalog Ikan</a></li>
+                <li><a href="#gustav_checkout" class="gustav_menu_link">3. Keranjang (<span id="gustav_cart_count">0</span>)</a></li>
+                <li><a href="#gustav_stok" class="gustav_menu_link">4. Update Stok</a></li>
+                <li><a href="#gustav_profil" class="gustav_menu_link">5. Profil Kolam</a></li>
+                <li><a href="#gustav_galeri" class="gustav_menu_link">6. Info Panen</a></li>
+                <li><a href="#gustav_kontak" class="gustav_menu_link">7. Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="gustav_container">
+
+        <!-- =========================================================
+             HALAMAN / SESI 1: HOME PAGE
+             ========================================================= -->
+        <section id="gustav_home">
+            <span class="gustav_hero_badge">Panen Segar Langsung dari Kolam Peternak</span>
+            <h1 class="gustav_hero_title">Sistem Penjualan Online & Stok Ikan Lele & Mujair</h1>
+            <p class="gustav_hero_desc">
+                Melayani pembelian eceran maupun grosir ikan air tawar segar hasil budidaya mandiri.
+                Pantau ketersediaan stok panen secara langsung dan pesan dengan mudah tanpa perantara.
+            </p>
+            <div class="gustav_btn_group">
+                <a href="#gustav_katalog" class="gustav_btn gustav_btn_gold">Pesan Ikan Sekarang</a>
+                <a href="#gustav_stok" class="gustav_btn gustav_btn_outline">Kelola Stok Peternak</a>
+            </div>
+
+            <div class="gustav_stats_grid">
+                <div class="gustav_stat_card">
+                    <div class="gustav_stat_number" id="gustav_stat_total_stok">0 Kg</div>
+                    <div>Total Stok Tersedia</div>
+                </div>
+                <div class="gustav_stat_card">
+                    <div class="gustav_stat_number" id="gustav_stat_varian">0 Jenis</div>
+                    <div>Varian Ikan Siap Panen</div>
+                </div>
+                <div class="gustav_stat_card">
+                    <div class="gustav_stat_number">100% Segar</div>
+                    <div>Ditangkap Saat Dipesan</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             HALAMAN / SESI 2: KATALOG & PEMESANAN ONLINE
+             ========================================================= -->
+        <section id="gustav_katalog" class="gustav_section">
+            <h2 class="gustav_section_title">Katalog Penjualan Ikan</h2>
+            <p class="gustav_section_subtitle">Pilih jenis ikan lele atau mujair segar sesuai kebutuhan Anda (satuan kilogram).</p>
+            <div class="gustav_grid" id="gustav_product_list">
+                <!-- Produk & foto dirender otomatis oleh JavaScript -->
+            </div>
+        </section>
+
+        <!-- =========================================================
+             HALAMAN / SESI 3: KERANJANG BELANJA & CHECKOUT
+             ========================================================= -->
+        <section id="gustav_checkout" class="gustav_section">
+            <h2 class="gustav_section_title">Keranjang & Checkout Pesanan</h2>
+            <p class="gustav_section_subtitle">Periksa pesanan Anda. Saat checkout diproses, stok kolam akan otomatis diperbarui.</p>
+
+            <div class="gustav_box">
+                <div class="gustav_table_wrap">
+                    <table class="gustav_table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nama Ikan</th>
+                                <th>Harga / Kg</th>
+                                <th>Jumlah (Kg)</th>
+                                <th>Subtotal</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gustav_cart_body">
+                            <tr>
+                                <td colspan="6" style="text-align:center; color:#64748b;">Keranjang belanja masih kosong.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="gustav_form_group" style="max-width: 450px;">
+                    <label class="gustav_label" for="gustav_buyer_name">Nama Pembeli / Warung / Rumah Makan:</label>
+                    <input type="text" id="gustav_buyer_name" class="gustav_input" placeholder="Contoh: Pak Budi / RM Sederhana">
+                </div>
+
+                <div class="gustav_form_group" style="max-width: 450px;">
+                    <label class="gustav_label" for="gustav_delivery_method">Metode Pengambilan:</label>
+                    <select id="gustav_delivery_method" class="gustav_select">
+                        <option value="Ambil Langsung di Kolam">Ambil Langsung di Kolam</option>
+                        <option value="Antar Kurir Lokal (Radius 10 Km)">Antar Kurir Lokal (Radius 10 Km)</option>
+                    </select>
+                </div>
+
+                <div class="gustav_checkout_summary">
+                    <div>
+                        <span style="color: var(--gustav-muted);">Total Pembayaran:</span>
+                        <h3 id="gustav_total_price" style="font-size: 1.6rem; color: var(--gustav-secondary);">Rp 0</h3>
+                    </div>
+                    <button class="gustav_btn gustav_btn_gold" onclick="gustavProcessCheckout()">Konfirmasi & Proses Pesanan</button>
+                </div>
+
+                <div id="gustav_checkout_alert" class="gustav_alert gustav_alert_success"></div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             HALAMAN / SESI 4: PANEL PEMBARUAN STOK (KHUSUS PETERNAK)
+             ========================================================= -->
+        <section id="gustav_stok" class="gustav_section">
+            <h2 class="gustav_section_title">Sistem Pembaruan Stok Ikan (Peternak)</h2>
+            <p class="gustav_section_subtitle">Tambah stok panen baru, ubah harga per kilogram, atau tambahkan varian ikan baru.</p>
+
+            <div class="gustav_admin_grid">
+                <!-- Form Tambah Varian Baru -->
+                <div class="gustav_box">
+                    <h3 style="color: var(--gustav-secondary); margin-bottom: 1rem;">+ Tambah Varian Ikan Baru</h3>
+                    <form id="gustav_add_product_form" onsubmit="gustavAddNewProduct(event)">
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_new_name">Nama Produk Ikan</label>
+                            <input type="text" id="gustav_new_name" class="gustav_input" placeholder="Contoh: Lele Konsumsi Harian" required>
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_new_category">Kategori</label>
+                            <select id="gustav_new_category" class="gustav_select">
+                                <option value="Lele">Ikan Lele</option>
+                                <option value="Mujair">Ikan Mujair</option>
+                            </select>
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_new_image_file">Foto Ikan (Opsional dari Galeri)</label>
+                            <input type="file" id="gustav_new_image_file" class="gustav_input" accept="image/*">
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_new_price">Harga per Kg (Rp)</label>
+                            <input type="number" id="gustav_new_price" class="gustav_input" min="1000" placeholder="24000" required>
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_new_stock">Stok Awal (Kg)</label>
+                            <input type="number" id="gustav_new_stock" class="gustav_input" min="1" placeholder="50" required>
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_new_desc">Keterangan Ukuran / Isi per Kg</label>
+                            <input type="text" id="gustav_new_desc" class="gustav_input" placeholder="Isi 7-9 ekor per kg, daging padat" required>
+                        </div>
+                        <button type="submit" class="gustav_btn gustav_btn_primary" style="width: 100%;">Simpan ke Katalog</button>
+                    </form>
+                </div>
+
+                <!-- Tabel Update Stok Cepat -->
+                <div class="gustav_box">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+                        <h3 style="color: var(--gustav-secondary);">Update Stok & Harga Cepat</h3>
+                        <button class="gustav_btn gustav_btn_danger" onclick="gustavResetDefaultData()">Reset Data Awal</button>
+                    </div>
+                    <div class="gustav_table_wrap">
+                        <table class="gustav_table">
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>Produk</th>
+                                    <th>Harga (Rp/Kg)</th>
+                                    <th>Stok (Kg)</th>
+                                    <th>Simpan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gustav_admin_stock_body">
+                                <!-- Diisi otomatis oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="gustav_stock_alert" class="gustav_alert gustav_alert_success"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             HALAMAN / SESI 5: PROFIL & KUALITAS KOLAM
+             ========================================================= -->
+        <section id="gustav_profil" class="gustav_section">
+            <h2 class="gustav_section_title">Profil & Standar Kualitas Kolam</h2>
+            <p class="gustav_section_subtitle">Mengapa ikan lele dan mujair dari peternakan kami lebih sehat, bersih, dan tidak berbau lumpur.</p>
+
+            <div class="gustav_grid">
+                <div class="gustav_feature_card">
+                    <h3 class="gustav_feature_title">💧 Sirkulasi Air Terjaga</h3>
+                    <p>Pergantian air kolam dilakukan secara berkala sehingga ikan lele dan mujair tumbuh di lingkungan yang bersih dan bebas bau tanah.</p>
+                </div>
+                <div class="gustav_feature_card">
+                    <h3 class="gustav_feature_title">🌾 Pakan Pelet Berkualitas</h3>
+                    <p>Menggunakan pakan pabrikan berprotein tinggi yang terukur setiap hari untuk menghasilkan daging ikan yang tebal dan gurih.</p>
+                </div>
+                <div class="gustav_feature_card">
+                    <h3 class="gustav_feature_title">⚖️ Timbangan Akurat & Transparan</h3>
+                    <p>Penimbangan dilakukan langsung saat ikan diangkat dari kolam penampungan agar pembeli mendapatkan berat bersih yang jujur.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             HALAMAN / SESI 6: GALERI & EDUKASI PANEN
+             ========================================================= -->
+        <section id="gustav_galeri" class="gustav_section">
+            <h2 class="gustav_section_title">Jadwal Panen & Panduan Penanganan</h2>
+            <p class="gustav_section_subtitle">Informasi siklus panen dan tips menjaga kesegaran ikan untuk pelanggan rumah tangga maupun pedagang.</p>
+
+            <div class="gustav_grid">
+                <div class="gustav_gallery_card">
+                    <div class="gustav_gallery_icon">🎣</div>
+                    <h3 class="gustav_feature_title">Panen Harian (Eceran)</h3>
+                    <p>Tersedia setiap pagi pukul 06.00 – 11.00 WIB dan sore pukul 15.30 – 17.30 WIB. Ikan diserok dalam kondisi hidup.</p>
+                </div>
+                <div class="gustav_gallery_card">
+                    <div class="gustav_gallery_icon">🚚</div>
+                    <h3 class="gustav_feature_title">Panen Raya / Partai Besar</h3>
+                    <p>Pemesanan di atas 30 kg untuk hajatan, pemancingan, atau warung pecel lele disarankan konfirmasi 1 hari sebelumnya.</p>
+                </div>
+                <div class="gustav_gallery_card">
+                    <div class="gustav_gallery_icon">❄️</div>
+                    <h3 class="gustav_feature_title">Tips Penyimpanan Segar</h3>
+                    <p>Bersihkan insang dan isi perut sebelum disimpan dalam wadah tertutup di freezer agar kesegaran bertahan hingga 2 minggu.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             HALAMAN / SESI 7: HALAMAN KONTAK (FORM INPUT PESAN)
+             ========================================================= -->
+        <section id="gustav_kontak" class="gustav_section" style="border-bottom: none;">
+            <h2 class="gustav_section_title">Kontak Pemilik Peternakan</h2>
+            <p class="gustav_section_subtitle">Punya pertanyaan seputar pesanan partai besar, kerja sama suplai, atau lokasi kolam? Kirim pesan di bawah ini.</p>
+
+            <div class="gustav_contact_grid">
+                <div class="gustav_box">
+                    <form id="gustav_contact_form" onsubmit="gustavSendContactMessage(event)">
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_sender_name">Nama Lengkap</label>
+                            <input type="text" id="gustav_sender_name" class="gustav_input" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_sender_contact">Nomor WhatsApp / Email</label>
+                            <input type="text" id="gustav_sender_contact" class="gustav_input" placeholder="Contoh: 0812-xxxx-xxxx" required>
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_sender_subject">Keperluan</label>
+                            <select id="gustav_sender_subject" class="gustav_select">
+                                <option value="Tanya Ketersediaan Stok">Tanya Ketersediaan Stok</option>
+                                <option value="Pesanan Partai Besar / Acara">Pesanan Partai Besar / Acara</option>
+                                <option value="Kerja Sama Suplai Warung">Kerja Sama Suplai Warung</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="gustav_form_group">
+                            <label class="gustav_label" for="gustav_sender_message">Isi Pesan kepada Pemilik Website</label>
+                            <textarea id="gustav_sender_message" class="gustav_textarea" rows="4" placeholder="Tuliskan detail pesan atau jumlah kebutuhan ikan Anda..." required></textarea>
+                        </div>
+                        <button type="submit" class="gustav_btn gustav_btn_primary" style="width: 100%;">Kirim Pesan Sekarang</button>
+                    </form>
+                    <div id="gustav_contact_alert" class="gustav_alert gustav_alert_success"></div>
+                </div>
+
+                <div class="gustav_box">
+                    <h3 style="color: var(--gustav-secondary); margin-bottom: 1rem;">Informasi Lokasi & Operasional</h3>
+                    <p style="margin-bottom: 0.8rem;"><strong>📍 Lokasi Kolam:</strong><br>Area Budidaya Perikanan Mega Mutiara Tasikmalaya</p>
+                    <p style="margin-bottom: 0.8rem;"><strong>⏰ Jam Operasional Kolam:</strong><br>Setiap Hari: 06.00 – 17.30 WIB</p>
+                    <p style="margin-bottom: 0.8rem;"><strong>📞 Layanan Pemesanan:</strong><br>Respon cepat melalui form kontak di samping atau langsung datang ke lokasi kolam.</p>
+                    <hr style="border: 0; border-top: 1px solid #dbeafe; margin: 1rem 0;">
+                    <p style="font-size: 0.9rem; color: var(--gustav-muted);">
+                        *Harga dan stok pada website diperbarui secara langsung oleh peternak sesuai kondisi panen harian.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="gustav_footer">
+        <p>&copy; 2026 <span class="gustav_footer_highlight">Piscicoltura</span> — Sistem Penjualan Online & Manajemen Stok Ikan Lele & Mujair.</p>
+    </footer>
+
+    <!-- =========================================================
+         JAVASCRIPT INTERAKTIF: FOTO PRODUK, STOK, KERANJANG & CHECKOUT
+         ========================================================= -->
+    <script>
+        const gustavDefaultProducts = [
+            {
+                id: 1,
+                name: "Ikan Lele Sangkuriang Segar",
+                category: "Lele",
+                image: "gambar/lele sangkuriang.jpg",
+                price: 23000,
+                stock: 85,
+                desc: "Ukuran konsumsi standar (isi 7–9 ekor/kg). Cocok untuk pecel lele & konsumsi harian."
+            },
+            {
+                id: 2,
+                name: "Ikan Lele Jumbo Pilihan",
+                category: "Lele",
+                image: "gambar/lele jumbo pilihan.jpg",
+                price: 25000,
+                stock: 40,
+                desc: "Ukuran besar (isi 4–5 ekor/kg). Daging tebal, cocok untuk fillet, bakar, atau olahan."
+            },
+            {
+                id: 3,
+                name: "Ikan Mujair Segar Kolam",
+                category: "Mujair",
+                image: "gambar/mujair segar.jpg",
+                price: 28000,
+                stock: 60,
+                desc: "Ukuran sedang-besar (isi 4–6 ekor/kg). Gurih, segar, bebas bau lumpur."
+            },
+            {
+                id: 4,
+                name: "Ikan Mujair Super (Besar)",
+                category: "Mujair",
+                image: "gambar/mujair super besar.jpg",
+                price: 32000,
+                stock: 30,
+                desc: "Ukuran super (isi 2–3 ekor/kg). Pilihan terbaik untuk bakar & masakan pesmol."
+            }
+        ];
+
+        let gustavProducts = JSON.parse(localStorage.getItem('gustav_fish_products_v2')) || [...gustavDefaultProducts];
+        let gustavCart = [];
+
+        function gustavFormatRupiah(angka) {
+            return 'Rp ' + angka.toLocaleString('id-ID');
+        }
+
+        function gustavSaveStorage() {
+            localStorage.setItem('gustav_fish_products_v2', JSON.stringify(gustavProducts));
+        }
+
+        function gustavToggleMenu() {
+            const nav = document.getElementById('gustav_nav_list');
+            nav.classList.toggle('gustav_show_menu');
+        }
+
+        function gustavRenderAll() {
+            const productList = document.getElementById('gustav_product_list');
+            const adminBody = document.getElementById('gustav_admin_stock_body');
+
+            productList.innerHTML = '';
+            adminBody.innerHTML = '';
+
+            let totalStokKg = 0;
+
+            gustavProducts.forEach((item) => {
+                totalStokKg += Number(item.stock);
+                const isOut = item.stock <= 0;
+                const imgSrc = item.image || (item.category === 'Lele' ? 'lele sangkuriang.jpg' : 'mujair segar.jpg');
+
+                productList.innerHTML += `
+                    <div class="gustav_card">
+                        <div>
+                            <div class="gustav_card_banner">
+                                <img src="${imgSrc}" alt="${item.name}" class="gustav_card_img">
+                                <span class="gustav_stock_badge ${isOut ? 'gustav_stock_empty' : ''}">
+                                    ${isOut ? 'Stok Habis' : 'Stok: ' + item.stock + ' Kg'}
+                                </span>
+                            </div>
+                            <div class="gustav_card_body">
+                                <h3 class="gustav_card_title">${item.name}</h3>
+                                <div class="gustav_card_price">${gustavFormatRupiah(item.price)} / Kg</div>
+                                <p class="gustav_card_desc">${item.desc}</p>
+                            </div>
+                        </div>
+                        <div class="gustav_card_body" style="padding-top: 0;">
+                            <div class="gustav_order_control">
+                                <input type="number" id="gustav_qty_${item.id}" class="gustav_input_qty" value="1" min="1" max="${item.stock}" ${isOut ? 'disabled' : ''}>
+                                <button class="gustav_btn gustav_btn_primary" style="flex:1;" onclick="gustavAddToCart(${item.id})" ${isOut ? 'disabled' : ''}>
+                                    ${isOut ? 'Habis' : '+ Keranjang'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                adminBody.innerHTML += `
+                    <tr>
+                        <td><img src="${imgSrc}" alt="${item.name}" class="gustav_thumb_mini"></td>
+                        <td><strong>${item.name}</strong></td>
+                        <td>
+                            <input type="number" id="gustav_edit_price_${item.id}" class="gustav_input" style="width:110px;" value="${item.price}" min="1000">
+                        </td>
+                        <td>
+                            <input type="number" id="gustav_edit_stock_${item.id}" class="gustav_input" style="width:85px;" value="${item.stock}" min="0">
+                        </td>
+                        <td>
+                            <button class="gustav_btn gustav_btn_gold" style="padding:0.45rem 0.8rem;" onclick="gustavUpdateStock(${item.id})">Update</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('gustav_stat_total_stok').textContent = totalStokKg + ' Kg';
+            document.getElementById('gustav_stat_varian').textContent = gustavProducts.length + ' Jenis';
+        }
+
+        function gustavAddToCart(productId) {
+            const product = gustavProducts.find(p => p.id === productId);
+            const qtyInput = document.getElementById(`gustav_qty_${productId}`);
+            const qty = parseInt(qtyInput.value);
+
+            if (!product || isNaN(qty) || qty <= 0) {
+                alert('Masukkan jumlah kilogram yang valid.');
+                return;
+            }
+
+            const existingItem = gustavCart.find(c => c.id === productId);
+            const currentInCart = existingItem ? existingItem.qty : 0;
+
+            if (currentInCart + qty > product.stock) {
+                alert(`Maaf, stok ${product.name} hanya tersisa ${product.stock} Kg.`);
+                return;
+            }
+
+            if (existingItem) {
+                existingItem.qty += qty;
+            } else {
+                gustavCart.push({
+                    id: product.id,
+                    name: product.name,
+                    image: product.image,
+                    price: product.price,
+                    qty: qty
+                });
+            }
+
+            gustavRenderCart();
+        }
+
+        function gustavRenderCart() {
+            const cartBody = document.getElementById('gustav_cart_body');
+            const cartCount = document.getElementById('gustav_cart_count');
+            const totalPriceEl = document.getElementById('gustav_total_price');
+
+            cartCount.textContent = gustavCart.length;
+
+            if (gustavCart.length === 0) {
+                cartBody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#64748b;">Keranjang belanja masih kosong.</td></tr>`;
+                totalPriceEl.textContent = 'Rp 0';
+                return;
+            }
+
+            let total = 0;
+            cartBody.innerHTML = '';
+
+            gustavCart.forEach((item, index) => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                cartBody.innerHTML += `
+                    <tr>
+                        <td><img src="${item.image}" alt="${item.name}" class="gustav_thumb_mini"></td>
+                        <td>${item.name}</td>
+                        <td>${gustavFormatRupiah(item.price)}</td>
+                        <td>${item.qty} Kg</td>
+                        <td><strong>${gustavFormatRupiah(subtotal)}</strong></td>
+                        <td><button class="gustav_btn gustav_btn_danger" onclick="gustavRemoveCart(${index})">Hapus</button></td>
+                    </tr>
+                `;
+            });
+
+            totalPriceEl.textContent = gustavFormatRupiah(total);
+        }
+
+        function gustavRemoveCart(index) {
+            gustavCart.splice(index, 1);
+            gustavRenderCart();
+        }
+
+        function gustavProcessCheckout() {
+            if (gustavCart.length === 0) {
+                alert('Keranjang belanja Anda masih kosong!');
+                return;
+            }
+
+            const buyerName = document.getElementById('gustav_buyer_name').value.trim();
+            const method = document.getElementById('gustav_delivery_method').value;
+
+            if (!buyerName) {
+                alert('Silakan isi nama pembeli terlebih dahulu.');
+                return;
+            }
+
+            gustavCart.forEach(cartItem => {
+                const prod = gustavProducts.find(p => p.id === cartItem.id);
+                if (prod) {
+                    prod.stock = Math.max(0, prod.stock - cartItem.qty);
+                }
+            });
+
+            gustavSaveStorage();
+            const totalText = document.getElementById('gustav_total_price').textContent;
+
+            const alertBox = document.getElementById('gustav_checkout_alert');
+            alertBox.style.display = 'block';
+            alertBox.innerHTML = `✅ Terima kasih <strong>${buyerName}</strong>! Pesanan senilai <strong>${totalText}</strong> (${method}) berhasil dicatat. Stok kolam telah otomatis diperbarui.`;
+
+            gustavCart = [];
+            document.getElementById('gustav_buyer_name').value = '';
+            gustavRenderCart();
+            gustavRenderAll();
+        }
+
+        function gustavUpdateStock(productId) {
+            const newPrice = parseInt(document.getElementById(`gustav_edit_price_${productId}`).value);
+            const newStock = parseInt(document.getElementById(`gustav_edit_stock_${productId}`).value);
+
+            if (isNaN(newPrice) || newPrice < 1000 || isNaN(newStock) || newStock < 0) {
+                alert('Pastikan harga dan jumlah stok valid.');
+                return;
+            }
+
+            const prod = gustavProducts.find(p => p.id === productId);
+            if (prod) {
+                prod.price = newPrice;
+                prod.stock = newStock;
+                gustavSaveStorage();
+                gustavRenderAll();
+
+                const stockAlert = document.getElementById('gustav_stock_alert');
+                stockAlert.style.display = 'block';
+                stockAlert.innerHTML = `✅ Stok & harga <strong>${prod.name}</strong> berhasil diperbarui menjadi <strong>${newStock} Kg</strong> (${gustavFormatRupiah(newPrice)}/Kg).`;
+            }
+        }
+
+        function gustavAddNewProduct(event) {
+            event.preventDefault();
+            const name = document.getElementById('gustav_new_name').value.trim();
+            const category = document.getElementById('gustav_new_category').value;
+            const price = parseInt(document.getElementById('gustav_new_price').value);
+            const stock = parseInt(document.getElementById('gustav_new_stock').value);
+            const desc = document.getElementById('gustav_new_desc').value.trim();
+            const fileInput = document.getElementById('gustav_new_image_file');
+
+            const newId = gustavProducts.length > 0 ? Math.max(...gustavProducts.map(p => p.id)) + 1 : 1;
+            const defaultImg = category === 'Lele' ? 'lele sangkuriang.jpg' : 'mujair segar.jpg';
+
+            const saveProductData = (imageData) => {
+                gustavProducts.push({
+                    id: newId,
+                    name: name,
+                    category: category,
+                    image: imageData,
+                    price: price,
+                    stock: stock,
+                    desc: desc
+                });
+
+                gustavSaveStorage();
+                gustavRenderAll();
+                document.getElementById('gustav_add_product_form').reset();
+
+                const stockAlert = document.getElementById('gustav_stock_alert');
+                stockAlert.style.display = 'block';
+                stockAlert.innerHTML = `✅ Produk baru <strong>${name}</strong> berhasil ditambahkan ke katalog!`;
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    saveProductData(e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                saveProductData(defaultImg);
+            }
+        }
+
+        function gustavResetDefaultData() {
+            if (confirm('Kembalikan data stok ikan dan foto ke pengaturan awal?')) {
+                gustavProducts = JSON.parse(JSON.stringify(gustavDefaultProducts));
+                gustavSaveStorage();
+                gustavRenderAll();
+            }
+        }
+
+        function gustavSendContactMessage(event) {
+            event.preventDefault();
+            const sender = document.getElementById('gustav_sender_name').value.trim();
+            const contact = document.getElementById('gustav_sender_contact').value.trim();
+            const subject = document.getElementById('gustav_sender_subject').value;
+
+            const contactAlert = document.getElementById('gustav_contact_alert');
+            contactAlert.style.display = 'block';
+            contactAlert.innerHTML = `✅ Pesan dari <strong>${sender}</strong> (${contact}) terkait <em>"${subject}"</em> telah terkirim kepada pemilik Gustav Fish Farm!`;
+
+            document.getElementById('gustav_contact_form').reset();
+        }
+
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.gustav_menu_link');
+            let currentId = '';
+
+            sections.forEach(sec => {
+                const top = window.scrollY;
+                const offset = sec.offsetTop - 130;
+                const height = sec.offsetHeight;
+                if (top >= offset && top < offset + height) {
+                    currentId = sec.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('gustav_active');
+                if (link.getAttribute('href') === '#' + currentId) {
+                    link.classList.add('gustav_active');
+                }
+            });
+        });
+
+        gustavRenderAll();
+        gustavRenderCart();
+    </script>
+</body>
+</html>
